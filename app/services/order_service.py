@@ -5,6 +5,7 @@ from app.models.order_item import OrderItem
 from app.models.product import Product
 from app.services.inventory_service import get_inventory_for_update
 from app.services.product_service import invalidate_product_cache
+from app.workers.tasks import send_order_confirmation
 
 def create_order(db: Session, payload):
     order = Order(
@@ -49,4 +50,6 @@ def create_order(db: Session, payload):
     order.status = "confirmed"
     db.commit()
     db.refresh(order)
+    # Fire-and-forget async notification — doesn't block the API response
+    send_order_confirmation.delay(order.id, order.customer_email)
     return order
