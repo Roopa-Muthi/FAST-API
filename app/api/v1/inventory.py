@@ -7,5 +7,5 @@ from app.services import inventory_service
 router = APIRouter(prefix="/inventory", tags=["Inventory"])
 
 @router.post("/")
-def create_inventory(payload: InventoryCreate, db: Session = Depends(get_db)):
-    return inventory_service.create_inventory(db, payload.product_id, payload.quantity_available)
+def create_or_update_inventory(payload: InventoryCreate, db: Session = Depends(get_db)):
+    return inventory_service.create_or_update_inventory(db, payload.product_id, payload.quantity_available)
