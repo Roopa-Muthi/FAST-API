@@ -25,7 +25,8 @@ tracking, built with FastAPI, PostgreSQL, Redis, and Celery.
 - **Dockerized** for containerized deployment (see Containerization section below)
 
 ## Tech Stack
-Python, FastAPI, PostgreSQL, Redis, Celery, Docker, Pytest, SQLAlchemy, Alembic
+Back-end: Python, FastAPI, PostgreSQL, Redis, Celery, Docker, Pytest, SQLAlchemy, Alembic
+Front-end: React Framework
 
 ## Getting Started
 
