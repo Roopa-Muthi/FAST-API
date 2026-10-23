@@ -15,6 +15,11 @@ export default function Products() {
     fetchProducts();
   }, []);
 
+  const handleChange = (field, value) => {
+    setForm({ ...form, [field]: value });
+    if (error) setError("");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -38,13 +43,13 @@ export default function Products() {
         <input
           placeholder="Name"
           value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          onChange={(e) => handleChange("name", e.target.value)}
           required
         />
         <input
           placeholder="SKU"
           value={form.sku}
-          onChange={(e) => setForm({ ...form, sku: e.target.value })}
+          onChange={(e) => handleChange("sku", e.target.value)}
           required
         />
         <input
@@ -52,13 +57,13 @@ export default function Products() {
           type="number"
           step="0.01"
           value={form.price}
-          onChange={(e) => setForm({ ...form, price: e.target.value })}
+          onChange={(e) => handleChange("price", e.target.value)}
           required
         />
         <input
           placeholder="Description"
           value={form.description}
-          onChange={(e) => setForm({ ...form, description: e.target.value })}
+          onChange={(e) => handleChange("description", e.target.value)}
         />
         <button type="submit">Add Product</button>
       </form>

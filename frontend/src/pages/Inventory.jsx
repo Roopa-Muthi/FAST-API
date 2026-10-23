@@ -6,6 +6,12 @@ export default function Inventory() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
+  const handleChange = (field, value) => {
+    setForm({ ...form, [field]: value });
+    if (result) setResult(null);
+    if (error) setError("");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -30,14 +36,14 @@ export default function Inventory() {
           placeholder="Product ID"
           type="number"
           value={form.product_id}
-          onChange={(e) => setForm({ ...form, product_id: e.target.value })}
+          onChange={(e) => handleChange("product_id", e.target.value)}
           required
         />
         <input
           placeholder="Quantity Available"
           type="number"
           value={form.quantity_available}
-          onChange={(e) => setForm({ ...form, quantity_available: e.target.value })}
+          onChange={(e) => handleChange("quantity_available", e.target.value)}
           required
         />
         <button type="submit">Add Stock</button>

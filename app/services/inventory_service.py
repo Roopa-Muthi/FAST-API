@@ -19,3 +19,5 @@ def create_or_update_inventory(db: Session, product_id: int, quantity: int):
 def get_inventory_for_update(db: Session, product_id: int):
     stmt = select(Inventory).where(Inventory.product_id == product_id).with_for_update()
     return db.execute(stmt).scalar_one_or_none()
+def get_inventory(db: Session, product_id: int):
+    return db.query(Inventory).filter(Inventory.product_id == product_id).first()
